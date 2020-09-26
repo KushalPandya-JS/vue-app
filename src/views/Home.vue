@@ -21,7 +21,7 @@
       
       <div class="characters-list">
           <CharactersCardView
-            v-for="character in selectedLocation.residents"
+            v-for="character in selectedLocation.residents.filter(character => character.status === 'Alive' || character.status === 'Dead')"
             :key="character.id"
             :character="character"
           />
