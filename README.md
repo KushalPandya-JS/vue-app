@@ -20,5 +20,10 @@ npm run build
 npm run lint
 ```
 
+### [Javascript Standard Code Style](https://standardjs.com/) 
+```
+npx standard
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
