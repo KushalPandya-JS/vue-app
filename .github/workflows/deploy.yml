@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  firebase-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -20,6 +20,5 @@ jobs:
           vercelToken: ${{ secrets.VERCEL_TOKEN }}
           vercelOrgId: ${{ secrets.VERCEL_ORG_ID }}
           vercelProjectId: ${{ secrets.VERCEL_PROJECT_ID }}
-          githubToken: ${{ secrets.PAT }}
           sourceDirectory: "src"
           assignDomain: "vue-app-pink.vercel.app"
