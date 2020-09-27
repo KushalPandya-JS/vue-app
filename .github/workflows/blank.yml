@@ -29,9 +29,9 @@ jobs:
       - uses: actions/checkout@master
       - uses: actions/setup-node@master
       - name: Installing project dependencies
-      - run: npm install
+        run: npm install
       - name: Building the project
-      - run: npm run build
+        run: npm run build
       - uses: actions/vercel-deployment@0.5.1
         with:
           vercelToken: ${{ secrets.VERCEL_TOKEN }}
