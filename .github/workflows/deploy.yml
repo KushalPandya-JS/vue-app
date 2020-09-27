@@ -9,16 +9,11 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@master
-      - name: Installing project dependencies
-      - run: npm install
-      - name: Building the project
-      - run: npm run build
-      - uses: actions/vercel-deployment@0.5.1
+      - uses: actions/checkout@v2
+      - uses: amondnet/vercel-action@v19
         with:
-          vercelToken: ${{ secrets.VERCEL_TOKEN }}
-          vercelOrgId: ${{ secrets.VERCEL_ORG_ID }}
-          vercelProjectId: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
+          vercel-args: '--prod' #Optional
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID}}  #Required
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}} #Required 
           sourceDirectory: "src"
-          assignDomain: "vue-app-pink.vercel.app"
