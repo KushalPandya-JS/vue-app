@@ -8,10 +8,8 @@
     - [`assets`](#assets)
     - [`components`](#components)
     - [`router`](#router)
-    - [`store`](#store)
     - [`utils`](#utils)
     - [`views`](#views)
-    - [`app.config.json`](#appconfigjson)
     - [`app.vue`](#appvue)
     - [`main.js`](#mainjs)
   - [`tests`](#tests)
@@ -44,10 +42,6 @@ Where most of the components in our app will live, including our [global base co
 ### `router`
 
 Where the router, routes, and any routing-related components live. See [the routing doc](routing.md) for more.
-
-### `store`
-
-Where all our global state management lives. See [the state management doc](state.md) for more.
 
 ### `utils`
 
