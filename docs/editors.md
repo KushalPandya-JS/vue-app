@@ -13,13 +13,6 @@ This project is best developed in VS Code. With the [recommended extensions](htt
 - Lint-on-save for all files
 - In-editor results on save for unit tests
 
-### Configuration
-
-To configure
-
-- `.vscode/extensions.json`
-- `.vscode/settings.json`
-
 ## FAQ
 
 **What kinds of editor settings and extensions should be added to the project?**
