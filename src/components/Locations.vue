@@ -1,7 +1,7 @@
 <template>
-<div class="locations">
-    <a @click="chooseLocation(location.id)">{{ location.name }}</a>
-</div>
+  <li>
+      <a @click="chooseLocation(location.id)" :title=location.name>{{ location.name }}</a>
+  </li>
 </template>
 
 <script>
@@ -16,5 +16,14 @@ export default {
 </script>
 
 <style scoped>
+
+li {
+  margin: 10px;
+}
+
+li:hover a {
+  cursor: pointer;
+  text-decoration: underline;
+}
 
 </style>

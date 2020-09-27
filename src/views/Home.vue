@@ -3,14 +3,23 @@
     
     <div class="locations">
 
-      <h3>Locations</h3>
+      <div class="location-container">
 
-      <Locations
-        @locationChosen="chooseLocation"
-          v-for="location in locations"
-          :key="location.id"
-          :location="location"
-        />
+        <h3>Locations</h3>
+
+        <ol id="locationsList">
+          <Locations
+            @locationChosen="chooseLocation"
+              v-for="location in locations"
+              :key="location.id"
+              :location="location"
+            />
+        </ol>
+        
+        <div class="location-observer" ref="locationObserver"></div>
+
+      </div>
+
     </div>
 
     <div v-if="selectedLocation">
@@ -44,22 +53,47 @@ export default {
   },
   data() {
     return {
+      temp: [],
       locations: [],
+      observer: null,
+      nextPage: 1,
       selectedLocation: null
     };
   },
+  created() {
+    this.observer = new IntersectionObserver(
+      this.onElementObserved, 
+      {
+        root: null,
+        rootMargins: '0px',
+        threshold: 0.5
+    }
+    );
+  },
   methods: {
-    async fetchLocations() {
-      this.locations = await locationsapi.getLocations()
-      console.log(this.locations);
+    updateLocation(getLocations) {
+      this.locations.push(getLocations)
+    },
+    async fetchLocations(pageNo) {
+      this.temp = await locationsapi.getLocations(pageNo)
+      this.nextPage = this.temp.info.next
+      this.locations = [ ...this.locations, ...this.temp.results]
+      console.log(this.temp)
     },
     chooseLocation(event) {
       const location = this.locations.find(c => c.id === event.id);
       this.selectedLocation = location;
+    },
+    onElementObserved(entries) {
+      entries.forEach(({isIntersecting}) => {
+        if (isIntersecting && this.nextPage) {
+          this.fetchLocations(this.nextPage);
+        } 
+      });
     }
   },
   mounted() {
-    this.fetchLocations();
+    this.observer.observe(this.$refs.locationObserver);
   }
 }
 </script>
@@ -71,9 +105,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: minmax(250px, 1fr) 3fr;
   justify-content: left;
   text-align: left;
 }
@@ -96,4 +129,19 @@ export default {
   align-content: center;
   min-height: 100vh;
 }
+
+.location-container {
+  position: fixed;
+  overflow-y: scroll;
+  top: 0;
+  bottom: 0;
+  overflow-wrap: break-word;
+  width: 250px;
+}
+
+.location-observer {
+  position: static;
+  height: 1px;
+}
+
 </style>
