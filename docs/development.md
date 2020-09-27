@@ -52,7 +52,7 @@ npm run serve
 npm run lint
 ```
 
-### Developing with the production API
+## Developing with the production API
 
 Shows all the characters and locations for the universe of Rick and Morty. In order to complete that, Use the public [Rick and Morty's API](https://rickandmortyapi.com/).
 
