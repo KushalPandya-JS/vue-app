@@ -1,5 +1,10 @@
 <template>
   <div class="character-details" v-if="character">
+
+    <router-link :to="{ name: 'Home' }">
+      <p>Go To Home</p>
+    </router-link>
+
     <img :src=character.image :alt=character.image>
     <dl>
       <dt>Name</dt>
