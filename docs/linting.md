@@ -5,7 +5,6 @@
   - [Terminal](#terminal)
   - [Pre-commit](#pre-commit)
   - [Editor](#editor)
-- [Configuration](#configuration)
 - [FAQ](#faq)
 
 This project uses ESLint, Stylelint, Markdownlint, and Prettier to catch errors and avoid bikeshedding by enforcing a common code style.
@@ -39,21 +38,6 @@ Staged files are automatically linted and tested before each commit. See `lint-s
 ### Editor
 
 In supported editors, all files will be linted and formatted on-save. See [editors.md](editors.md) for details.
-
-## Configuration
-
-This app ships with opinionated defaults, but you can edit each tools configuration in the following config files:
-
-- [ESLint](https://eslint.org/docs/user-guide/configuring)
-  - `.eslintrc.js`
-  - `.eslintignore`
-- [Stylelint](https://stylelint.io/user-guide/configuration/)
-  - `stylelint.config.js`
-- [Markdownlint](https://github.com/markdownlint/markdownlint/blob/master/docs/configuration.md)
-  - `.markdownlintrc`
-- [Prettier](https://prettier.io/docs/en/configuration.html)
-  - `.prettierrc.js`
-  - `.prettierignore`
 
 ## FAQ
 
