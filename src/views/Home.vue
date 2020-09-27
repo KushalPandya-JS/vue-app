@@ -3,9 +3,11 @@
     
     <div class="locations">
 
-      <div class="location-container">
+      <rise-loader :loading="loading"></rise-loader>
 
-        <h3>Locations</h3>
+      <div class="location-container" >
+
+        <h3 v-if="locations.length">Locations</h3>
 
         <ol id="locationsList">
           <Locations
@@ -41,15 +43,18 @@
 </template>
 
 <script>
-import CharactersCardView from "../components/CharactersCardView";
+import CharactersCardView from "../components/CharactersCardView"
 import Locations from '../components/Locations.vue'
 import { locationsapi } from '../services/locations'
+import RiseLoader from '../components/Loader'
+
 
 export default {
   name: 'Home',
   components: {
     CharactersCardView,
-    Locations
+    Locations,
+    RiseLoader
   },
   data() {
     return {
@@ -57,7 +62,8 @@ export default {
       locations: [],
       observer: null,
       nextPage: 1,
-      selectedLocation: null
+      selectedLocation: null,
+      loading: true
     };
   },
   created() {
@@ -78,11 +84,18 @@ export default {
       this.temp = await locationsapi.getLocations(pageNo)
       this.nextPage = this.temp.info.next
       this.locations = [ ...this.locations, ...this.temp.results]
+      this.loading = false
       console.log(this.temp)
     },
     chooseLocation(event) {
-      const location = this.locations.find(c => c.id === event.id);
-      this.selectedLocation = location;
+      this.selectedLocation = null
+      this.loading = true
+      
+      setTimeout(() => {
+        const location = this.locations.find(c => c.id === event.id)
+        this.selectedLocation = location
+        this.loading = false
+      }, 300)
     },
     onElementObserved(entries) {
       entries.forEach(({isIntersecting}) => {

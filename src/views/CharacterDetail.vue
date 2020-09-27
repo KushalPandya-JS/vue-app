@@ -1,44 +1,52 @@
 <template>
-  <div class="character-details" v-if="character">
+  <div>
+    <rise-loader :loading="loading"></rise-loader>
+    <div class="character-details" v-if="!loading">
 
-    <router-link :to="{ name: 'Home' }">
-      <p>Go To Home</p>
-    </router-link>
+      <router-link :to="{ name: 'Home' }">
+        <p>Go To Home</p>
+      </router-link>
 
-    <img :src=character.image :alt=character.image>
-    <dl>
-      <dt>Name</dt>
-      <dd>{{ character.name }}</dd>
+      <img :src=character.image :alt=character.image>
+      <dl>
+        <dt>Name</dt>
+        <dd>{{ character.name }}</dd>
 
-      <dt>Status</dt>
-      <dd>{{ character.status }}</dd>
+        <dt>Status</dt>
+        <dd>{{ character.status }}</dd>
 
-      <dt>Species</dt>
-      <dd>{{ character.species }}</dd>
+        <dt>Species</dt>
+        <dd>{{ character.species }}</dd>
 
-      <dt>Type</dt>
-      <dd>{{ character.type }}</dd>
+        <dt>Type</dt>
+        <dd>{{ character.type }}</dd>
 
-      <dt>Gender</dt>
-      <dd>{{ character.gender }}</dd>
+        <dt>Gender</dt>
+        <dd>{{ character.gender }}</dd>
 
-      <dt>Origin</dt>
-      <dd>{{ character.origin.name }}</dd>
+        <dt>Origin</dt>
+        <dd>{{ character.origin.name }}</dd>
 
-      <dt>Location</dt>
-      <dd>{{ character.location.name }}</dd>
+        <dt>Location</dt>
+        <dd>{{ character.location.name }}</dd>
 
-    </dl>
+      </dl>
+    </div>
   </div>
 </template>
 
 <script>
 import { characterapi } from '../services/character'
+import RiseLoader from '../components/Loader'
 
 export default {
   name: 'CharacterDetail',
+  components: {
+    RiseLoader
+  },
   data() {
     return {
+      loading: true,
       character: {
         origin: {
         },
@@ -50,6 +58,7 @@ export default {
   methods: {
     async fetchCharacter(characterID) {
       this.character = await characterapi.getCharacter(characterID)
+      this.loading = false
     }
   },
   mounted() {
