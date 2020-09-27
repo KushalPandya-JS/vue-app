@@ -34,8 +34,7 @@ jobs:
         run: npm run build
       - uses: amondnet/vercel-action@v19
         with:
-          vercelToken: ${{ secrets.VERCEL_TOKEN }}
-          vercelOrgId: ${{ secrets.VERCEL_ORG_ID }}
-          vercelProjectId: ${{ secrets.VERCEL_PROJECT_ID }}
-          sourceDirectory: "src"
-          assignDomain: "vue-app-pink.vercel.app"
+          vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
+          vercel-args: '--prod' #Optional
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID}}  #Required
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}} #Required 
