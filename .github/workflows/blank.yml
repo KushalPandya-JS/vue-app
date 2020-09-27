@@ -32,7 +32,7 @@ jobs:
         run: npm install
       - name: Building the project
         run: npm run build
-      - uses: actions/vercel-deployment@0.5.1
+      - uses: amondnet/vercel-action@v19
         with:
           vercelToken: ${{ secrets.VERCEL_TOKEN }}
           vercelOrgId: ${{ secrets.VERCEL_ORG_ID }}
