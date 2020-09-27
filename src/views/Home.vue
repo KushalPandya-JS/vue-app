@@ -1,14 +1,9 @@
 <template>
   <div id="home">
-    
     <div class="locations">
-
       <rise-loader :loading="loading"></rise-loader>
-
       <div class="location-container" >
-
         <h3 v-if="locations.length">Locations</h3>
-
         <ol id="locationsList">
           <Locations
             @locationChosen="chooseLocation"
@@ -17,11 +12,8 @@
               :location="location"
             />
         </ol>
-        
         <div class="location-observer" ref="locationObserver"></div>
-
       </div>
-
     </div>
 
     <div v-if="selectedLocation">
@@ -113,13 +105,8 @@ export default {
 
 <style>
 #home {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
   display: grid;
-  grid-template-columns: minmax(250px, 1fr) 3fr;
+  grid-template-columns: minmax(300px, 1fr) 3fr;
   justify-content: left;
   text-align: left;
 }
@@ -149,7 +136,7 @@ export default {
   top: 0;
   bottom: 0;
   overflow-wrap: break-word;
-  width: 250px;
+  width: 300px;
 }
 
 .location-observer {

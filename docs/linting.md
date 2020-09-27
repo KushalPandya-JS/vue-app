@@ -1,0 +1,47 @@
+# Linting & formatting
+
+- [Languages](#languages)
+- [Scripts](#scripts)
+  - [Terminal](#terminal)
+  - [Pre-commit](#pre-commit)
+  - [Editor](#editor)
+- [FAQ](#faq)
+
+This project uses ESLint, Stylelint, Markdownlint, and Prettier to catch errors and avoid bikeshedding by enforcing a common code style.
+
+## Languages
+
+- **JavaScript** is linted by ESLint and formatted by Prettier
+- **HTML** (in templates and JSX) is linted by ESLint
+- **CSS** is linted by Stylelint and formatted by Prettier
+- **Markdown** is linted by Markdownlint and formatted by Prettier
+- **JSON** is formatted by Prettier
+- **Images** are minified by `imagemin-lint-staged` (only on pre-commit)
+
+## Scripts
+
+There are a few different contexts in which the linters run.
+
+### Terminal
+
+```bash
+# Lint all files, fixing many violations automatically
+yarn lint
+```
+
+See `package.json` to update.
+
+### Pre-commit
+
+Staged files are automatically linted and tested before each commit. See `lint-staged.config.js` to update. [Yorkie](https://github.com/yyx990803/yorkie) is used by `@vue/cli-plugin-eslint` to install the pre-commit hook.
+
+### Editor
+
+In supported editors, all files will be linted and formatted on-save. See [editors.md](editors.md) for details.
+
+## FAQ
+
+**So many configuration files! Why not move more of this to `package.json`?**
+
+- Moving all possible configs to `package.json` can make it _really_ packed, so that quickly navigating to a specific config becomes difficult.
+- When split out into their own file, many tools provide the option of exporting a config from JS. I do this wherever possible, because dynamic configurations are simply more powerful, able to respond to environment variables and much more.
